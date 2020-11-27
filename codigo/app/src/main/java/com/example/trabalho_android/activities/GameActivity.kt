@@ -3,9 +3,9 @@ package com.example.trabalho_android.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.CheckBox
 import androidx.appcompat.app.AlertDialog
-import androidx.core.view.children
-import androidx.core.view.get
+import androidx.core.view.iterator
 import com.example.trabalho_android.R
 import com.example.trabalho_android.models.Question
 import com.google.firebase.auth.FirebaseAuth
@@ -16,19 +16,35 @@ import kotlinx.android.synthetic.main.activity_game.*
 class GameActivity : AppCompatActivity() {
     var database: DatabaseReference? = null
     var questionList: List<Question>? = null
+    var i: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
         configFirebase()
-
-        questionList?.get(0)?.let {
-            question.setText(it.question.toString())
-//            Options.get(1).get
-        }
+        makeQuestion(i)
 
         finishBtn.setOnClickListener {
-//            if(questionList?.get(0)?.correctAns == )
+
+            for(option in Options){
+                if((option as CheckBox).isChecked){
+                    print(option.id)
+                }
+            }
+
+            i++
+            makeQuestion(i)
+        }
+    }
+
+    fun makeQuestion(i: Int){
+        questionList?.get(i)?.let {
+            question.setText(it.question.toString())
+            ans1.setText(it.ans1.toString())
+            ans2.setText(it.ans2.toString())
+            ans3.setText(it.ans3.toString())
+            ans4.setText(it.ans4.toString())
+            ans5.setText(it.ans5.toString())
         }
     }
 
@@ -76,9 +92,9 @@ class GameActivity : AppCompatActivity() {
             val ans3 = map.get("ans3") as String
             val ans4 = map.get("ans4") as String
             val ans5 = map.get("ans5") as String
-            val correctAns = map.get("correctAns") as Int
-
-            val quest = Question(id = id, question = question, ans1 = ans1, ans2 = ans2, ans3 = ans3, ans4 = ans4, ans5 = ans5, correctAns = correctAns)
+//            val correctAns = map.get("correctAns") as Int
+print(ans1)
+            val quest = Question(id, question, ans1, ans2, ans3, ans4, ans5, 1)
 
             questionsList.add(quest)
         }
