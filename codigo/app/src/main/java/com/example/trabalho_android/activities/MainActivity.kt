@@ -1,10 +1,11 @@
-package com.example.trabalho_android
+package com.example.trabalho_android.activities
 
 import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.example.trabalho_android.R
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -26,6 +27,10 @@ class MainActivity : AppCompatActivity() {
         }
         else{
             Toast.makeText(this,"Bem-Vindo", Toast.LENGTH_SHORT).show()
+
+            //ALTERAR O CÓDIGO ABAIXO DEPOIS
+            val intent = Intent(this, GameOverActivity :: class.java)
+            startActivity(intent)
         }
     }
 
