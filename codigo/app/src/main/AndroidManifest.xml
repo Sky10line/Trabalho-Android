@@ -12,7 +12,7 @@
         <activity android:name=".activities.GameActivity"></activity>
         <activity android:name=".activities.HighScoreActivity" />
         <activity android:name=".activities.MenuActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
