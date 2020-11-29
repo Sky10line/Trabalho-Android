@@ -22,6 +22,7 @@ class GameOverActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_over)
 
+        var jogador = Player(0,"ana",1000)
 
     }
 
@@ -51,7 +52,7 @@ class GameOverActivity : AppCompatActivity() {
 
     fun  refreshPlayerInfo(){
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://crudcrud.com/api/4f2bfad669bb47c18c6ad262ba982ce6")
+            .baseUrl("https://crudcrud.com/api/aa6f5166861143779e9c0a15df145cee")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
