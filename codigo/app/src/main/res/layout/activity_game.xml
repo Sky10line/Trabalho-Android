@@ -54,7 +54,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="40dp"
-                android:text="Resposta certa = +100 pontos\nDica utilizada = -20 pontos\n\n Dicas podem ser utilizadas apenas uma vez por pergunta\nSomente uma pergunta pode ser pulada deixando-a em branco"
+                android:text="Resposta certa = +100 pontos\nDica utilizada = -20 pontos\n\n Dicas podem ser utilizadas apenas uma vez por pergunta"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="#000000"

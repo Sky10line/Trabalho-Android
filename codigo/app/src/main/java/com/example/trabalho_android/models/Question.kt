@@ -8,5 +8,5 @@ data class Question (
     var ans3: String,
     var ans4: String,
     var ans5: String,
-    var correctAns: Int
+    var correctAns: Int,
 )
