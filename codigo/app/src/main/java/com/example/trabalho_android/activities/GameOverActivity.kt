@@ -22,7 +22,7 @@ class GameOverActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_over)
 
-        var jogador = Player(0,"ana",1000)
+//        var jogador = Player(0,"ana",1000)
 
     }
 
@@ -42,7 +42,7 @@ class GameOverActivity : AppCompatActivity() {
                         .inflate(R.layout.card_player, container, false)
 
                     //cardView.endGameMsgText.text = "Parabéns " + player.name + " Você ganhou" PARA TROCAR O TEXTO DO CARD. LEMBRAR DE CRIAR UM TEXTO PARA CASO O JOGADOR PERCA TAMBÉM
-                    cardView.scoreText.text = "Score: " + player.highScore
+                    cardView.scoreText.text = "Score: " + player.highscore
 
                     container.addView(cardView)
                 }
@@ -50,41 +50,44 @@ class GameOverActivity : AppCompatActivity() {
         }
     }
 
-    fun  refreshPlayerInfo(){
+    fun  refreshPlayerInfo() {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://crudcrud.com/api/aa6f5166861143779e9c0a15df145cee")
+            .baseUrl("https://crudcrud.com/api/aa6f5166861143779e9c0a15df145cee/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
         val service = retrofit.create(PlayerServices::class.java)
         val call = service.list();
 
-        call.enqueue(callback)
-    }
+        val callback = object : Callback<List<Player>> {
 
-    val callback = object: Callback<List<Player>> {
-
-        override fun onResponse(call: Call<List<Player>>,
-                                response: Response<List<Player>>){
-            if(response.isSuccessful){
-                refreshUI(response.body(),0) // CONSERTAR DEPOIS O COMO CHAMAR UM SCORES ESPECIFICO
-            }
-            else{
-                Snackbar
-                    .make(container, "NÃO FOI POSSIVEL ATUALIZAR O SCORE", Snackbar.LENGTH_LONG)
-                    .show()
+            override fun onResponse(
+                call: Call<List<Player>>,
+                response: Response<List<Player>>
+            ) {
+                if (response.isSuccessful) {
+                    refreshUI(
+                        response.body(),
+                        0
+                    ) // CONSERTAR DEPOIS O COMO CHAMAR UM SCORES ESPECIFICO
+                } else {
+                    Snackbar
+                        .make(container, "NÃO FOI POSSIVEL ATUALIZAR O SCORE", Snackbar.LENGTH_LONG)
+                        .show()
                     Log.e("ERRO", response.errorBody().toString())
+                }
+
+            }
+
+            override fun onFailure(call: Call<List<Player>>, t: Throwable) {
+                Snackbar
+                    .make(container, "NÃO FOI POSSIVEL CONECTAR A INTERNET", Snackbar.LENGTH_LONG)
+                    .show()
+
+                Log.e("ERRO", "Falha ao chamar o serviço", t)
             }
 
         }
-
-        override fun onFailure(call: Call<List<Player>>, t: Throwable) {
-            Snackbar
-                .make(container, "NÃO FOI POSSIVEL CONECTAR A INTERNET", Snackbar.LENGTH_LONG)
-                .show()
-
-            Log.e("ERRO", "Falha ao chamar o serviço", t)
-        }
-
+        call.enqueue(callback)
     }
 }

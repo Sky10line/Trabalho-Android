@@ -8,9 +8,9 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface PlayerServices {
-    @GET("/Player")
+    @GET("/players")
     fun list(): Call<List<Player>>
 
-    @POST("/Player")
-    fun create(@Body player: Player): Call<Player>
+//    @POST("/Player")
+//    fun create(@Body player: Player): Call<Player>
 }
