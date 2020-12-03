@@ -22,6 +22,7 @@ class GameOverActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_over)
 
+//        var jogador = Player(0,"ana",1000)
 
     }
 
@@ -31,16 +32,16 @@ class GameOverActivity : AppCompatActivity() {
         refreshPlayerInfo()
     }
 
-    fun refreshUI(listaPlayers: List<Player>?, playerID: Int){ //fun refreshUI(listaPlayers: List<Player>?, playerID: Int)
+    fun refreshUI(listaPlayers: List<Player>?, playerID: String){
         container.removeAllViews()
 
         if (listaPlayers != null) {
             for (player in listaPlayers){
-                if (player.id == playerID){
+                if (player._id == playerID){
                     val cardView = layoutInflater
                         .inflate(R.layout.card_player, container, false)
 
-                    //cardView.endGameMsgText.text = "Parabéns " + player.name + " Você ganhou" PARA TROCAR O TEXTO DO CARD. LEMBRAR DE CRIAR UM TEXTO PARA CASO O JOGADOR PERCA TAMBÉM
+                    cardView.endGameMsgText.text = "Parabéns " + player.name + " Você ganhou" //PARA TROCAR O TEXTO DO CARD. LEMBRAR DE CRIAR UM TEXTO PARA CASO O JOGADOR PERCA TAMBÉM
                     cardView.scoreText.text = "Score: " + player.highScore
 
                     container.addView(cardView)
@@ -49,41 +50,44 @@ class GameOverActivity : AppCompatActivity() {
         }
     }
 
-    fun  refreshPlayerInfo(){
+    fun  refreshPlayerInfo() {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://crudcrud.com/api/4f2bfad669bb47c18c6ad262ba982ce6")
+            .baseUrl("https://crudcrud.com/api/3dbfd9ee5c4e48429604b46235435bfc/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
         val service = retrofit.create(PlayerServices::class.java)
         val call = service.list();
 
-        call.enqueue(callback)
-    }
+        val callback = object : Callback<List<Player>> {
 
-    val callback = object: Callback<List<Player>> {
-
-        override fun onResponse(call: Call<List<Player>>,
-                                response: Response<List<Player>>){
-            if(response.isSuccessful){
-                refreshUI(response.body(),0) // CONSERTAR DEPOIS O COMO CHAMAR UM SCORES ESPECIFICO
-            }
-            else{
-                Snackbar
-                    .make(container, "NÃO FOI POSSIVEL ATUALIZAR O SCORE", Snackbar.LENGTH_LONG)
-                    .show()
+            override fun onResponse(
+                call: Call<List<Player>>,
+                response: Response<List<Player>>
+            ) {
+                if (response.isSuccessful) {
+                    refreshUI(
+                        response.body(),
+                        "5fc973fde445ab03e8f70835"
+                    ) // CONSERTAR DEPOIS O COMO CHAMAR UM SCORES ESPECIFICO
+                } else {
+                    Snackbar
+                        .make(container, "NÃO FOI POSSIVEL ATUALIZAR O SCORE", Snackbar.LENGTH_LONG)
+                        .show()
                     Log.e("ERRO", response.errorBody().toString())
+                }
+
+            }
+
+            override fun onFailure(call: Call<List<Player>>, t: Throwable) {
+                Snackbar
+                    .make(container, "NÃO FOI POSSIVEL CONECTAR A INTERNET", Snackbar.LENGTH_LONG)
+                    .show()
+
+                Log.e("ERRO", "Falha ao chamar o serviço", t)
             }
 
         }
-
-        override fun onFailure(call: Call<List<Player>>, t: Throwable) {
-            Snackbar
-                .make(container, "NÃO FOI POSSIVEL CONECTAR A INTERNET", Snackbar.LENGTH_LONG)
-                .show()
-
-            Log.e("ERRO", "Falha ao chamar o serviço", t)
-        }
-
+        call.enqueue(callback)
     }
 }

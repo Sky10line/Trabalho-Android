@@ -1,7 +1,7 @@
 package com.example.trabalho_android.models
 
 data class Player (
-    var id: Int,
+    var _id: String,
     var name: String,
     var highScore: Int,
 )
