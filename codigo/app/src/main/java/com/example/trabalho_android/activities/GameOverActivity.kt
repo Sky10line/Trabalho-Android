@@ -32,12 +32,12 @@ class GameOverActivity : AppCompatActivity() {
         refreshPlayerInfo()
     }
 
-    fun refreshUI(listaPlayers: List<Player>?, playerID: Int){ //fun refreshUI(listaPlayers: List<Player>?, playerID: Int)
+    fun refreshUI(listaPlayers: List<Player>?, playerID: String){
         container.removeAllViews()
 
         if (listaPlayers != null) {
             for (player in listaPlayers){
-                if (player.id == playerID){
+                if (player._id == playerID){
                     val cardView = layoutInflater
                         .inflate(R.layout.card_player, container, false)
 
@@ -52,7 +52,7 @@ class GameOverActivity : AppCompatActivity() {
 
     fun  refreshPlayerInfo() {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://crudcrud.com/api/aa6f5166861143779e9c0a15df145cee/")
+            .baseUrl("https://crudcrud.com/api/3dbfd9ee5c4e48429604b46235435bfc")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -68,7 +68,7 @@ class GameOverActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     refreshUI(
                         response.body(),
-                        0
+                        "5fc973fde445ab03e8f70835"
                     ) // CONSERTAR DEPOIS O COMO CHAMAR UM SCORES ESPECIFICO
                 } else {
                     Snackbar
