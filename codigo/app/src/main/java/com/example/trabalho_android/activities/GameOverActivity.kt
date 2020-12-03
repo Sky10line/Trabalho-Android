@@ -41,8 +41,8 @@ class GameOverActivity : AppCompatActivity() {
                     val cardView = layoutInflater
                         .inflate(R.layout.card_player, container, false)
 
-                    //cardView.endGameMsgText.text = "Parabéns " + player.name + " Você ganhou" PARA TROCAR O TEXTO DO CARD. LEMBRAR DE CRIAR UM TEXTO PARA CASO O JOGADOR PERCA TAMBÉM
-                    cardView.scoreText.text = "Score: " + player.highscore
+                    cardView.endGameMsgText.text = "Parabéns " + player.name + " Você ganhou" //PARA TROCAR O TEXTO DO CARD. LEMBRAR DE CRIAR UM TEXTO PARA CASO O JOGADOR PERCA TAMBÉM
+                    cardView.scoreText.text = "Score: " + player.highScore
 
                     container.addView(cardView)
                 }
@@ -52,7 +52,7 @@ class GameOverActivity : AppCompatActivity() {
 
     fun  refreshPlayerInfo() {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://crudcrud.com/api/3dbfd9ee5c4e48429604b46235435bfc")
+            .baseUrl("https://crudcrud.com/api/3dbfd9ee5c4e48429604b46235435bfc/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
