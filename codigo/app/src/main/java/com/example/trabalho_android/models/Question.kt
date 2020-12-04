@@ -1,5 +1,7 @@
 package com.example.trabalho_android.models
 
+import android.graphics.Bitmap
+
 data class Question (
     var id: String? = null,
     var question: String,
@@ -9,4 +11,5 @@ data class Question (
     var ans4: String,
     var ans5: String,
     var correctAns: Int
+//    var bitmapImg: Bitmap
 )
