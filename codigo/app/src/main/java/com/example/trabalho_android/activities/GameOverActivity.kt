@@ -33,12 +33,17 @@ class GameOverActivity : AppCompatActivity() {
 
         playerScore = score
 
-        val playerName = editTextPlayerName.text.toString()
+        playerName = editTextPlayerName.text.toString()
 
-        Toast.makeText(this,  score.toString(), Toast.LENGTH_LONG).show()
+        //Toast.makeText(this,  score.toString(), Toast.LENGTH_LONG).show()
+        scoreText.setText("SCORE: " + score.toString())
 
         sendScoreBtn.setOnClickListener {
             sendPlayerInfo(playerName, playerScore)
+
+            val intent = Intent(this, HighScoreActivity::class.java)
+            intent.putExtra("playerName", playerName)
+            startActivity(intent)
         }
     }
 

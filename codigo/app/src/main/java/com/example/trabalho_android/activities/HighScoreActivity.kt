@@ -16,9 +16,15 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class HighScoreActivity : AppCompatActivity() {
+    var PlayerName : String? = "jOGADOR"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_high_score)
+
+        val intent = getIntent()
+        var playerName = intent.getStringExtra("playerName")
+
+        PlayerName = playerName
     }
     override fun onResume() {
         super.onResume()
@@ -26,12 +32,12 @@ class HighScoreActivity : AppCompatActivity() {
         refreshPlayerInfo()
     }
 
-    fun refreshUI(listaPlayers: List<Player>?, playerID: String){
-        container.removeAllViews()
+    fun refreshUI(listaPlayers: List<Player>?, playerID: String?){
+        //container.removeAllViews()
 
         if (listaPlayers != null) {
             for (player in listaPlayers){
-                if (player._id == playerID){
+                if (player.name == playerID){
                     val cardView = layoutInflater
                         .inflate(R.layout.card_player, container, false)
 
@@ -62,7 +68,8 @@ class HighScoreActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     refreshUI(
                         response.body(),
-                        "5fc973fde445ab03e8f70835"
+                        PlayerName
+
                     ) // CONSERTAR DEPOIS O COMO CHAMAR UM SCORES ESPECIFICO
                 } else {
                     Snackbar
