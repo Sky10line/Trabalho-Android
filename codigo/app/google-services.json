@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "75786966510",
+    "firebase_url": "https://trabalho-android-de213.firebaseio.com",
+    "project_id": "trabalho-android-de213",
+    "storage_bucket": "trabalho-android-de213.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:75786966510:android:f9091ae3c7eae5081daaff",
+        "android_client_info": {
+          "package_name": "com.example.trabalho_android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "75786966510-giv3v1qv0hl0llm7vlrk08pi8rre4pro.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5jYKA_3huD4pzWjjSXdwT4HTG2L_r73E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "75786966510-giv3v1qv0hl0llm7vlrk08pi8rre4pro.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
