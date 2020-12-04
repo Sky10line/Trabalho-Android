@@ -49,6 +49,7 @@ class GameActivity : AppCompatActivity() {
                         Options.alpha = 1f
                         hintBtn.alpha = 1f
                         hintBtn.isEnabled = true
+                        Toast.makeText(this, questionList?.count().toString(), Toast.LENGTH_LONG).show()
                         i++
                         makeQuestion(i)
                     } else if (i < questionList?.count() ?: -1) {
@@ -57,13 +58,18 @@ class GameActivity : AppCompatActivity() {
                                 if ((Options.get(k) as CheckBox).isChecked) {
                                     if (checkAnswer(i, k)) {
                                         score += 100
-                                        Toast.makeText(this, score.toString(), Toast.LENGTH_LONG)
-                                            .show()
                                     }
                                 }
                             }
                             i++
-                            makeQuestion(i)
+                            if(i < questionList?.count() ?: -1) {
+                                makeQuestion(i)
+                            }
+                            else{
+                                val intent = Intent(this, GameOverActivity::class.java)
+                                intent.putExtra("score", score)
+                                startActivity(intent)
+                            }
                         } else {
                             if (checkQuantityAnswer(0) == true) {
                                 if (skips > 0) {
@@ -86,13 +92,6 @@ class GameActivity : AppCompatActivity() {
                                 ).show()
                             }
                         }
-                    } else {
-                        //fazer o a transição para tela de colocar nome e subir o score
-//                        if (score < 0) {
-//                            score = 0
-//                        }
-                        val intent = Intent(this, GameActivity::class.java)
-                        startActivity(intent)
                     }
                 }
 

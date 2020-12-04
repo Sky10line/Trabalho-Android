@@ -1,5 +1,6 @@
 package com.example.trabalho_android.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -23,7 +24,10 @@ class GameOverActivity : AppCompatActivity() {
         setContentView(R.layout.activity_game_over)
 
 //        var jogador = Player(0,"ana",1000)
+        val intent = getIntent()
+        val score = intent.getIntExtra("score", 0)
 
+        Toast.makeText(this,  score.toString(), Toast.LENGTH_LONG).show()
     }
 
     override fun onResume() {
