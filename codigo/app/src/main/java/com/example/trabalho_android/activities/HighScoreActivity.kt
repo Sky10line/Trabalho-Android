@@ -8,6 +8,8 @@ import com.example.trabalho_android.models.Player
 import com.example.trabalho_android.services.PlayerServices
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_game_over.*
+import kotlinx.android.synthetic.main.activity_game_over.container
+import kotlinx.android.synthetic.main.activity_high_score.*
 import kotlinx.android.synthetic.main.card_player.view.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -33,7 +35,7 @@ class HighScoreActivity : AppCompatActivity() {
     }
 
     fun refreshUI(listaPlayers: List<Player>?, playerID: String?){
-        //container.removeAllViews()
+        container.removeAllViews()
 
         if (listaPlayers != null) {
             for (player in listaPlayers){
@@ -52,7 +54,7 @@ class HighScoreActivity : AppCompatActivity() {
 
     fun  refreshPlayerInfo() {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://crudcrud.com/api/3dbfd9ee5c4e48429604b46235435bfc/")
+            .baseUrl("https://crudcrud.com/api/1d79ac9375094e0ab04ab81135b83d66/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

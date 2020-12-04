@@ -8,9 +8,10 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface PlayerServices {
+    //talvez os valores tenha barra antes
     @GET("players")
     fun list(): Call<List<Player>>
 
-    @POST("/Players")
-    fun create(@Body player: Player): Call<Player>
+    @POST("players")
+    fun create(@Body player: Player): Call<List<Player>>
 }
