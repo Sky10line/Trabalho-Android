@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.trabalho_android.R
 import com.firebase.ui.auth.AuthUI
+import com.google.android.gms.auth.api.Auth
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
@@ -26,10 +27,11 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(i, 0)
         }
         else{
+            
             Toast.makeText(this,"Bem-Vindo", Toast.LENGTH_SHORT).show()
 
             //ALTERAR O CÓDIGO ABAIXO DEPOIS
-            val intent = Intent(this, GameOverActivity :: class.java)
+            val intent = Intent(this, GameActivity :: class.java)
             startActivity(intent)
         }
     }

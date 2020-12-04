@@ -11,6 +11,6 @@ interface PlayerServices {
     @GET("players")
     fun list(): Call<List<Player>>
 
-   // @POST("/Players")
-   // fun create(@Body player: Player): Call<Player>
+    @POST("/Players")
+    fun create(@Body player: Player): Call<Player>
 }
