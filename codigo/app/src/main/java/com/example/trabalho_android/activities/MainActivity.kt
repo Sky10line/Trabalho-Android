@@ -98,7 +98,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun newItem(){
-        bitmapImg
         val etQuest = EditText(this)
         etQuest.hint = "Pergunta"
 

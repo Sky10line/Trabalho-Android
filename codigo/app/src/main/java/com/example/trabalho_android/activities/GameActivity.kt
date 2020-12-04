@@ -49,7 +49,6 @@ class GameActivity : AppCompatActivity() {
                         Options.alpha = 1f
                         hintBtn.alpha = 1f
                         hintBtn.isEnabled = true
-                        Toast.makeText(this, questionList?.count().toString(), Toast.LENGTH_LONG).show()
                         i++
                         makeQuestion(i)
                     } else if (i < questionList?.count() ?: -1) {
@@ -75,7 +74,14 @@ class GameActivity : AppCompatActivity() {
                                 if (skips > 0) {
                                     skips -= 1
                                     i++
-                                    makeQuestion(i)
+                                    if(i < questionList?.count() ?: -1) {
+                                        makeQuestion(i)
+                                    }
+                                    else{
+                                        val intent = Intent(this, GameOverActivity::class.java)
+                                        intent.putExtra("score", score)
+                                        startActivity(intent)
+                                    }
                                 } else {
                                     Toast.makeText(
                                         this,

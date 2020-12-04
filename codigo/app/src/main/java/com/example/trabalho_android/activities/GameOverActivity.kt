@@ -33,23 +33,19 @@ class GameOverActivity : AppCompatActivity() {
 
         playerScore = score
 
-        playerName = editTextPlayerName.text.toString()
+
 
         //Toast.makeText(this,  score.toString(), Toast.LENGTH_LONG).show()
         scoreText.setText("SCORE: " + score.toString())
 
         sendScoreBtn.setOnClickListener {
 
+            playerName = editTextPlayerName.text.toString()
+            sendPlayerInfo(playerName, playerScore)
             val intent = Intent(this, HighScoreActivity::class.java)
             intent.putExtra("playerName", playerName)
             startActivity(intent)
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        sendPlayerInfo(playerName, playerScore)
     }
 
     fun  sendPlayerInfo(playerName: String, playerScore: Int) {
@@ -57,8 +53,6 @@ class GameOverActivity : AppCompatActivity() {
             .baseUrl("https://crudcrud.com/api/1d79ac9375094e0ab04ab81135b83d66/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-
-        Toast.makeText(this, playerName,Toast.LENGTH_LONG).show()
 
         val service = retrofit.create(PlayerServices::class.java)
         val call = service.create(Player(playerName, playerScore));
