@@ -39,34 +39,29 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(i, 0)
         }
         else{
-<<<<<<< HEAD
-            
-=======
+
+
             configFirebase()
->>>>>>> Comunication-game-gameover
+
             Toast.makeText(this,"Bem-Vindo", Toast.LENGTH_SHORT).show()
         }
 
         val iGame = Intent(this, GameActivity :: class.java)
         val iHigh = Intent(this, HighScoreActivity :: class.java)
 
-<<<<<<< HEAD
-            //ALTERAR O CÓDIGO ABAIXO DEPOIS
-            val intent = Intent(this, GameActivity :: class.java)
-            startActivity(intent)
-=======
+
         playBtn.setOnClickListener {
             startActivity(iGame)
->>>>>>> Comunication-game-gameover
+
         }
 
         highscoreBtn.setOnClickListener {
             startActivity(iHigh)
         }
 
-        addQuestionBtn.setOnClickListener {
-            newItem()
-        }
+       // addQuestionBtn.setOnClickListener {
+       //     newItem()
+        // }
 
         val hintSkips = HintSkip(hints = 2, skips = 2)
         Thread {
